@@ -1,0 +1,33 @@
+.brutal-border { border-width: 4px; border-color: #39382f; }
+.brutal-shadow { box-shadow: 8px 8px 0px 0px #39382f; }
+/* Kleinerer Schatten auf kleinen Bildschirmen */
+@media (max-width: 639px) {
+    .brutal-shadow { box-shadow: 4px 4px 0px 0px #39382f; }
+}
+.electric-accent { color: #0044ff; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; }
+h1, h2, h3 { font-family: 'Newsreader', serif; }
+
+/* Responsive Stadtlabels im Local-Pulses-Grid
+   Skalierung so berechnet, dass "PARIS" (5 Zeichen, col-span-1)
+   in jeder Viewport-Breite in die Zelle passt. */
+.city-label {
+    font-size: 1.25rem;
+    letter-spacing: 0.15em;
+    margin-left: 0.15em;
+}
+@media (min-width: 640px) {
+    .city-label { font-size: 1.5rem; letter-spacing: 0.2em; margin-left: 0.2em; }
+}
+@media (min-width: 768px) {
+    .city-label { font-size: 1.5rem; letter-spacing: 0.25em; margin-left: 0.25em; }
+}
+@media (min-width: 1024px) {
+    .city-label { font-size: 1.75rem; letter-spacing: 0.3em; margin-left: 0.3em; }
+}
+@media (min-width: 1280px) {
+    .city-label { font-size: 2.25rem; letter-spacing: 0.4em; margin-left: 0.4em; }
+}
+@media (min-width: 1536px) {
+    .city-label { font-size: 3rem; letter-spacing: 0.5em; margin-left: 0.5em; }
+}

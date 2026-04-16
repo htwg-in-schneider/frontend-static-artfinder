@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ArtFinder</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="js/tailwind-config.js"></script>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+
+<!-- TopNavBar -->
+<nav id="navbar" class="fixed top-0 z-50 bg-white dark:bg-stone-900 border-b-4 border-[#39382f] flex justify-between items-center w-full px-4 sm:px-6 py-3 sm:py-4 transition-transform duration-300 ease-in-out">
+    <a class="text-xl sm:text-2xl font-black italic text-[#ae3f29]" href="#">ArtFinder</a>
+    <!-- Desktop-Navigation -->
+    <div class="hidden md:flex gap-8 items-center">
+        <a class="font-serif text-lg tracking-tight text-[#39382f] dark:text-stone-300 hover:border-b-4 hover:border-[#ae3f29] hover:pb-1 hover:text-[#ae3f29]" href="#">Discovery</a>
+        <a class="font-serif text-lg tracking-tight text-[#39382f] dark:text-stone-300 hover:border-b-4 hover:border-[#ae3f29] hover:pb-1 hover:text-[#ae3f29]" href="#">Artists</a>
+        <a class="font-serif text-lg tracking-tight text-[#39382f] dark:text-stone-300 hover:border-b-4 hover:border-[#ae3f29] hover:pb-1 hover:text-[#ae3f29]" href="#">Organizers</a>
+        <a class="font-serif text-lg tracking-tight text-[#39382f] dark:text-stone-300 hover:border-b-4 hover:border-[#ae3f29] hover:pb-1 hover:text-[#ae3f29]" href="#">Exhibitions</a>
+    </div>
+    <!-- Rechte Seite: Aktionen -->
+    <div class="flex items-center gap-2 sm:gap-4">
+        <button class="material-symbols-outlined text-on-surface-variant p-2">search</button>
+        <button class="hidden md:block bg-primary text-white px-6 py-2 brutal-border font-bold brutal-shadow active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">Join Now</button>
+        <!-- Hamburger-Menu-Button – nur mobil sichtbar -->
+        <button id="menuToggle" class="md:hidden material-symbols-outlined text-on-surface-variant p-2" aria-label="Menu oeffnen">menu</button>
+    </div>
+</nav>
+
+<!-- Mobiles Vollbild-Menu (Slide-In von rechts) -->
+<div id="mobileMenu" class="fixed inset-0 z-[60] bg-surface flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+    <button id="menuClose" class="absolute top-4 right-4 material-symbols-outlined text-on-surface-variant p-2 text-3xl" aria-label="Menu schliessen">close</button>
+    <a class="font-serif text-2xl tracking-tight text-[#39382f] hover:text-[#ae3f29] transition-colors" href="#">Discovery</a>
+    <a class="font-serif text-2xl tracking-tight text-[#39382f] hover:text-[#ae3f29] transition-colors" href="#">Artists</a>
+    <a class="font-serif text-2xl tracking-tight text-[#39382f] hover:text-[#ae3f29] transition-colors" href="#">Organizers</a>
+    <a class="font-serif text-2xl tracking-tight text-[#39382f] hover:text-[#ae3f29] transition-colors" href="#">Exhibitions</a>
+    <button class="bg-primary text-white px-8 py-3 brutal-border font-bold brutal-shadow active:translate-x-1 active:translate-y-1 active:shadow-none transition-all mt-4">Join Now</button>
+</div>
+
+<!-- Hero Section -->
+<header class="relative min-h-screen md:h-screen md:min-h-[921px] flex flex-col items-center justify-center px-4 sm:px-6 overflow-clip bg-surface-container-low">
+    <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <img class="fixed w-full h-full object-cover grayscale contrast-150" data-alt="abstract painting with high contrast black and white brushstrokes and splatters of deep red terracotta pigment" src="resources/HeroSection_Background.png"/>
+    </div>
+    <div class="sticky top-1/4 z-10 text-center max-w-6xl py-8 sm:py-12 md:py-16">
+        <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-[10rem] font-black leading-none tracking-tighter mb-4 sm:mb-6 md:mb-8 italic uppercase text-on-surface">
+            UNFILTERED<br/>
+            <span class="text-primary italic">CREATIVITY</span>
+        </h1>
+        <div class="flex flex-col items-center justify-center gap-4 sm:gap-6 md:flex-row">
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl max-w-lg text-left font-medium border-l-4 border-primary pl-4">
+                Blocking out algorithmic noise. Breaking cronyistic structures. Raw local culture.
+            </p>
+            <button class="w-full sm:w-auto bg-[#0044ff] text-white text-lg sm:text-xl md:text-2xl lg:text-3xl font-black px-8 py-4 sm:px-10 sm:py-5 md:px-12 md:py-6 brutal-border brutal-shadow hover:bg-primary transition-all active:translate-x-2 active:translate-y-2 active:shadow-none uppercase">
+                EXPLORE NOW
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Audience Blocks (Bento Grid) -->
+<section class="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 mx-auto" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2339382f' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;); background-attachment: fixed;">
+    <div class="mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-16 gap-4 md:gap-8">
+            <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl italic leading-tight max-w-2xl text-on-surface">
+                A Trinity of <span class="text-secondary">Creative Connection</span>.
+            </h2>
+            <p class="font-bold uppercase tracking-[0.2em] text-outline text-sm mb-4">
+                Select your entry point
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-[1440px] mx-auto">
+            <!-- Artists -->
+            <div class="group brutal-border p-6 sm:p-8 lg:p-6 xl:p-8 bg-surface-container-highest brutal-shadow flex flex-col justify-between min-h-[280px] sm:min-h-[320px] lg:min-h-[400px]">
+                <span class="material-symbols-outlined text-5xl md:text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">palette</span>
+                <div>
+                    <h3 class="text-3xl sm:text-4xl 2xl:text-5xl font-black mb-4 uppercase">Artists</h3>
+                    <p class="text-base sm:text-lg mb-6 font-medium">Don't just create. Be a part of the culture around you. Post. Connect. Exhibit. Sell.</p>
+                    <div class="w-full h-2 bg-on-surface group-hover:bg-primary transition-colors"></div>
+                </div>
+            </div>
+            <!-- Organizers -->
+            <div class="group brutal-border p-6 sm:p-8 lg:p-6 xl:p-8 bg-secondary-container brutal-shadow flex flex-col justify-between min-h-[280px] sm:min-h-[320px] lg:min-h-[400px]">
+                <span class="material-symbols-outlined text-5xl md:text-6xl text-secondary" style="font-variation-settings: 'FILL' 1;">diversity_3</span>
+                <div>
+                    <h3 class="text-3xl sm:text-4xl 2xl:text-5xl font-black mb-4 uppercase">Organizers</h3>
+                    <p class="text-base sm:text-lg mb-6 font-medium">Curate the chaos. Put your venue on the map. Find artists. Be visible. Collaborate.</p>
+                    <div class="w-full h-2 bg-on-surface group-hover:bg-secondary transition-colors"></div>
+                </div>
+            </div>
+            <!-- Art Lovers -->
+            <div class="group brutal-border p-6 sm:p-8 lg:p-6 xl:p-8 bg-tertiary-container brutal-shadow flex flex-col justify-between min-h-[280px] sm:min-h-[320px] lg:min-h-[400px] md:col-span-2 lg:col-span-1">
+                <span class="material-symbols-outlined text-5xl md:text-6xl text-tertiary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                <div>
+                    <h3 class="text-3xl sm:text-4xl 2xl:text-5xl font-black mb-4 uppercase">Lovers</h3>
+                    <p class="text-base sm:text-lg mb-6 font-medium">Own the narrative. Experience local culture. Discover exhibitions. Support creatives.</p>
+                    <div class="w-full h-2 bg-on-surface group-hover:bg-tertiary transition-colors"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Problem/Solution: The Real Gap -->
+<section class="bg-on-surface text-surface py-12 sm:py-16 md:py-24 px-4 sm:px-6 overflow-hidden">
+    <div class="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+        <div>
+            <h2 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black uppercase mb-4 sm:mb-6 md:mb-8 leading-tight tracking-tighter">
+                THE REAL <span class="text-primary-fixed">GAP</span>
+            </h2>
+            <div class="space-y-6 md:space-y-8 font-mono text-base md:text-lg">
+                <p class="border-l-2 border-primary-fixed pl-4 sm:pl-6">
+                    Being visible in the creative industry is hard. Getting into galleries is more about connections than talent and stories. Independent artists often are left with one option: Social media - a noise machine. Too much talent is lost in algorithms, while local culture fades away.
+                </p>
+                <p class="border-l-2 border-primary-fixed pl-4 sm:pl-6">
+                    ArtFinder strives for a solution. A raw archive, unbiased network and free marketplace of local creativity. A timeless place for culture to thrive. For artists to share, and sell their work, without gatekeepers or trends. To connect with their local scene. For organizers to present exhibitions. To allow meaningful opportunities, connecting artists and audiences. For art lovers to discover and support the scene around them.
+                </p>
+                <p class="text-primary-fixed font-bold text-lg sm:text-xl md:text-2xl uppercase tracking-widest">
+                    // NO ALGORITHMS. ONLY ARCHIVE.
+                </p>
+            </div>
+        </div>
+        <div class="relative">
+            <img class="brutal-border brutal-shadow w-full h-[250px] sm:h-[350px] md:h-[500px] object-cover grayscale" data-alt="gritty close-up of spray paint texture on a concrete wall with dramatic lighting and deep shadows" src="resources/ProblemSolution_Picture_LandingPage.png"/>
+            <div class="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 bg-primary text-white p-3 sm:p-4 md:p-6 brutal-border font-black text-lg sm:text-xl md:text-2xl">
+                EST. 2026
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Regional Discovery: Abstract Grid -->
+<section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-surface-container-low">
+    <div class="max-w-[1440px] mx-auto">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 sm:mb-12 md:mb-16 gap-4">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase">Local <span class="text-[#0044ff]">Pulses</span></h2>
+            <p class="font-bold text-base sm:text-lg md:text-xl uppercase tracking-tighter max-w-none sm:max-w-xs text-left sm:text-right">Discover geographic art clusters that are actually happening.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 brutal-border brutal-shadow">
+            <!-- Berlin -->
+            <div class="relative col-span-2 md:row-span-2 bg-on-surface brutal-border aspect-[3/2] md:aspect-square overflow-hidden group">
+                <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 ease-in-out" data-alt="modern brutalist architecture in Berlin with sharp angles and grey concrete against a bright blue sky" src="resources/wal_172619-berlin-7781669_1920.jpg"/>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-white city-label font-black uppercase">BERLIN</span>
+                </div>
+            </div>
+            <!-- London -->
+            <div class="relative col-span-2 row-span-1 bg-on-surface brutal-border aspect-[2/1] overflow-hidden group">
+                <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 ease-in-out" data-alt="industrial warehouse interior converted into an art studio with large windows and paint splatters" src="resources/ichigo121212-phone-booth-203492_1920.jpg"/>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-white city-label font-black uppercase">LONDON</span>
+                </div>
+            </div>
+            <!-- NYC -->
+            <div class="relative bg-on-surface col-span-1 row-span-1 brutal-border aspect-square overflow-hidden group">
+                <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 ease-in-out" data-alt="busy street in New York City with yellow taxis and tall buildings in a gritty urban style" src="resources/javaistan-empire-state-building-6675010_1920.jpg"/>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-white city-label font-black uppercase">NYC</span>
+                </div>
+            </div>
+            <!-- Paris -->
+            <div class="relative col-span-1 md:row-span-2 bg-on-surface brutal-border aspect-square md:aspect-[1/2] overflow-hidden group">
+                <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 ease-in-out" data-alt="industrial warehouse interior converted into an art studio with large windows and paint splatters" src="resources/nikasucha-paris-738106_1920.jpg"/>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-white city-label font-black uppercase">PARIS</span>
+                </div>
+            </div>
+            <!-- LA -->
+            <div class="relative bg-on-surface col-span-1 row-span-1 brutal-border aspect-square overflow-hidden group">
+                <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 ease-in-out" data-alt="busy street in New York City with yellow taxis and tall buildings in a gritty urban style" src="resources/caradoc-rodeo-drive-848243_1920.jpg"/>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-white city-label font-black uppercase">LA</span>
+                </div>
+            </div>
+            <!-- Konstanz -->
+            <div class="relative col-span-1 md:col-span-2 row-span-1 bg-on-surface brutal-border aspect-square md:aspect-[2/1] overflow-hidden group">
+                <img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 ease-in-out" data-alt="industrial warehouse interior converted into an art studio with large windows and paint splatters" src="resources/violetta-imperia-2440982_1920.jpg"/>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-white city-label font-black uppercase">KONSTANZ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="py-16 sm:py-24 md:py-32 px-4 sm:px-6 flex flex-col items-center text-center" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2339382f' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;); background-attachment: fixed;">
+    <h2 class="text-4xl sm:text-5xl md:text-7xl lg:text-[10rem] xl:text-[12rem] font-black leading-none mb-6 sm:mb-8 md:mb-12 uppercase italic text-on-surface">
+        GET <span class="text-[#0044ff]">INVOLVED</span>
+    </h2>
+    <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 w-full sm:w-auto">
+        <button class="w-full sm:w-auto bg-primary text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black px-8 py-4 sm:px-10 sm:py-5 md:px-12 md:py-6 lg:px-16 lg:py-8 brutal-border brutal-shadow hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all">
+            JOIN ARCHIVE
+        </button>
+        <button class="w-full sm:w-auto bg-white text-on-surface text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black px-8 py-4 sm:px-10 sm:py-5 md:px-12 md:py-6 lg:px-16 lg:py-8 brutal-border brutal-shadow hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all">
+            SUBMIT WORK
+        </button>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="w-full py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6 md:gap-8 bg-stone-100 dark:bg-stone-950 border-t-4 border-[#39382f]">
+    <div class="text-lg sm:text-xl font-bold text-[#39382f] dark:text-stone-200">ArtFinder Archive</div>
+    <div class="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+        <a class="font-sans text-xs sm:text-sm uppercase tracking-widest text-[#39382f] dark:text-stone-400 hover:underline decoration-2 underline-offset-4" href="#">Privacy Policy</a>
+        <a class="font-sans text-xs sm:text-sm uppercase tracking-widest text-[#39382f] dark:text-stone-400 hover:underline decoration-2 underline-offset-4" href="#">Terms of Service</a>
+        <a class="font-sans text-xs sm:text-sm uppercase tracking-widest text-[#39382f] dark:text-stone-400 hover:underline decoration-2 underline-offset-4" href="#">Regional Map</a>
+        <a class="font-sans text-xs sm:text-sm uppercase tracking-widest text-[#39382f] dark:text-stone-400 hover:underline decoration-2 underline-offset-4" href="#">Archive</a>
+        <a class="font-sans text-xs sm:text-sm uppercase tracking-widest text-[#39382f] dark:text-stone-400 hover:underline decoration-2 underline-offset-4" href="#">Contact</a>
+    </div>
+    <div class="font-sans text-xs sm:text-sm uppercase tracking-widest text-[#39382f] dark:text-stone-400 text-center md:text-right">
+        &copy; 2026 ArtFinder Archive. Handcrafted for the creative soul.
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body></html>
